@@ -22,26 +22,27 @@ public class Backtracking {
 
     public List<Maquina> minimizarXBacktracking(List<Maquina> maquinas, int piezasLimite) {
         List<Maquina> solucionActual = new ArrayList<>();
-        back(solucionActual, 0, maquinas, piezasLimite);
+        back(solucionActual, 0, maquinas, piezasLimite, 0);
         return mejorSolucion;
     }
 
-    private void back(List<Maquina> solucionActual, int sumaActual, List<Maquina> maquinas, int piezasLimite) {
-        cantEstadosGenerados++;          // REVISAR 
+    private void back(List<Maquina> solucionActual, int sumaActual, List<Maquina> maquinas, int piezasLimite, int pos) {
+        cantEstadosGenerados++;          
         if (sumaActual == piezasLimite) {
             if (esMejor(solucionActual)) {
-                mejorSolucion = new ArrayList<>(solucionActual); 
+                mejorSolucion.clear();
+                mejorSolucion.addAll(solucionActual);
             }
 
         } else {
 
-            for(Maquina m : maquinas) {
-                if (sumaActual + m.getPieza() <= piezasLimite) {
-                    sumaActual += m.getPieza();
-                    solucionActual.add(m);
-                    back(solucionActual, sumaActual, maquinas, piezasLimite);
-                    sumaActual -= m.getPieza();
-                    solucionActual.remove(solucionActual.size() - 1);
+            for(int i = pos; i < maquinas.size(); i++) {
+                if (sumaActual + maquinas.get(i).getPieza() <= piezasLimite) {
+                    sumaActual += maquinas.get(i).getPieza();
+                    solucionActual.add(maquinas.get(i));
+                    back(solucionActual, sumaActual, maquinas, piezasLimite, i);
+                    sumaActual -= maquinas.get(i).getPieza();
+                    solucionActual.removeLast();
                 }
             }
         }

@@ -30,9 +30,9 @@ public class Greedy {
 
 
         while (!copiaMaquinas.isEmpty() && sumaActual < piezasLimite) {
-            Maquina m = copiaMaquinas.get(0); // agarra la maquina con mayor cant de piezas siempre porque estan ordenadas de mayor a menor y vas removiendo
+            Maquina m = copiaMaquinas.get(0);   // agarra la maquina con mayor cant de piezas siempre porque estan ordenadas de mayor a menor y vas removiendo
+            candidatosConsiderados++; 
             while (sumaActual + m.getPieza() <= piezasLimite) {
-                candidatosConsiderados++;
                 sumaActual += m.getPieza();
                 solucionActual.add(m);
             }
