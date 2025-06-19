@@ -15,10 +15,10 @@ public class Aplicacion {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
 
-            // Leer la primera línea: cantidad total de piezas
+            // Lee la primera línea: cantidad total de piezas
             piezasTotales = Integer.parseInt(br.readLine().trim());
 
-            // Leer el resto: cada línea tiene nombre y cantidad de piezas que produce
+            // Lee el resto: cada línea tiene nombre y cantidad de piezas que produce
             while ((linea = br.readLine()) != null) {
                 String[] partes = linea.split(",");
                 String nombre = partes[0].trim();
@@ -38,9 +38,9 @@ public class Aplicacion {
         Greedy greedy = new Greedy();
         List<Maquina> resultadoGreedy = greedy.minimizarXGreedy(maquinas, piezasTotales);
 
-        // Imprimir la solución
+        // Imprime la solución
         System.out.println("Solución Backtracking:");
-        if (back == null || resultadoBack.isEmpty()) { // ver si cambiamos el back por resultadoBack
+        if (back == null || resultadoBack.isEmpty()) { 
             System.out.println("No se encontró una secuencia válida.");
         } else {
             System.out.println("Secuencia óptima:");
